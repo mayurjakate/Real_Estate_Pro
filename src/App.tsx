@@ -8,30 +8,40 @@ import Amenities from './components/sections/Amenities';
 import Enquiry from './components/sections/Enquiry';
 import ProjectMembers from './components/sections/ProjectMembers';
 import sitesData from "./components/data/sites.json";
+import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false); // New state for desktop collapse
   const [activeSection, setActiveSection] = useState('building');
   const [selectedSite, setSelectedSite] = useState('Vista Imperia');
-
   const sites = Object.keys(sitesData);
   const currentSiteData = sitesData[selectedSite as keyof typeof sitesData];
 
-  // Handle responsive sidebar
+  // Handle responsive sidebar behavior on resize
   useEffect(() => {
     const handleResize = () => {
-      setIsSidebarOpen(window.innerWidth >= 1024);
+      if (window.innerWidth >= 1024) {
+        setIsMobileOpen(false); // Close mobile sidebar on desktop
+      }
     };
-
-    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const handleFlatSelect = (flatNumber: string) => {
     setActiveSection('flat');
-    // You might want to pass the flat number to the FlatInfo component
-    // This could be done through additional state or props
+    if (window.innerWidth < 1024) {
+      setIsMobileOpen(false);
+    }
+  };
+
+  const handleSectionClick = (section: string) => {
+    setActiveSection(section);
+    if (window.innerWidth < 1024) {
+      setIsMobileOpen(false);
+    }
   };
 
   const renderActiveSection = () => {
@@ -56,46 +66,47 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Sidebar */}
-      <Sidebar
-        isOpen={isSidebarOpen}
-        setIsOpen={setIsSidebarOpen}
-        activeSection={activeSection}
-        setActiveSection={setActiveSection}
-        sites={sites}
-        selectedSite={selectedSite}
-        onSiteChange={setSelectedSite}
-      />
-
-      {/* Main Content */}
-      <div className={`
-        transition-all duration-300 ease-in-out
-        ${isSidebarOpen ? 'mr-64' : 'mr-16'}
-      `}>
-        {/* Top Navigation */}
-        <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
-          <div className="px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-          <div className="text-left">
-            <h1 className="text-lg font-semibold text-gray-900">
-              DR City
-            </h1>
-            <p className="text-sm text-gray-600">
-              Professional Property Management
-            </p>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Top Bar - Always visible */}
+      <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+        <div className="flex items-center justify-between px-6 py-4">
+          <div className="text-left lg:text-right">
+            <h1 className="text-lg font-semibold text-gray-900">DR City</h1>
+            <p className="text-sm text-gray-600">Professional Property Management</p>
           </div>
-              </div>
-              {/* You can add other right-side content here if needed */}
+          {/* Burger icon for mobile */}
+          <button
+            onClick={() => setIsMobileOpen(!isMobileOpen)}
+            className="p-2 text-gray-700 lg:hidden"
+          >
+            {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </header>
+
+      <div className="flex flex-1">
+        {/* Sidebar */}
+        <Sidebar
+          isMobileOpen={isMobileOpen}
+          setIsMobileOpen={setIsMobileOpen}
+          isCollapsed={isCollapsed}
+          setIsCollapsed={setIsCollapsed}
+          activeSection={activeSection}
+          setActiveSection={handleSectionClick}
+          sites={sites}
+          selectedSite={selectedSite}
+          onSiteChange={setSelectedSite}
+        />
+
+        {/* Main Content - Adjust margin based on desktop sidebar state */}
+        <main className={`
+          flex-1 transition-all duration-300 ease-in-out
+          ${isCollapsed ? 'lg:mr-16' : 'lg:mr-64'}
+        `}>
+          <div className="p-6">
+            <div className="max-w-7xl mx-auto">
+              {renderActiveSection()}
             </div>
-          </div>
-        </header>
-
-        {/* Page Content */}
-        <main className="p-6">
-          <div className="max-w-7xl mx-auto">
-            {renderActiveSection()}
           </div>
         </main>
       </div>
