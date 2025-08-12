@@ -1,0 +1,479 @@
+{
+  "Vista Imperia": {
+    "name": "Vista Imperia",
+    "tagline": "Premium Luxurious Flats",
+    "maharera": "P52100000293",
+    "buildingDetails": {
+      "location": "Baner, Pune",
+      "possession": "December 2025",
+      "contractor": "ABC Construction Ltd",
+      "launchYear": "2023",
+      "currentStatus": "Under Construction",
+      "coordinates": {
+        "lat": 18.5679,
+        "lng": 73.7781
+      }
+    },
+    "buildingFeatures": {
+      "floors": 15,
+      "totalFlats": 120,
+      "elevators": 3,
+      "parkingLevel": 2
+    },
+    "threeDModel": {
+      "path": "/models/comp_Building_view.glb",
+      "viewerConfig": {
+        "camera": {
+          "position": [
+            0,
+            5,
+            7
+          ],
+          "fov": 50
+        },
+        "lights": {
+          "ambientLight": {
+            "intensity": 0.5
+          },
+          "spotLight": {
+            "position": [
+              8,
+              8,
+              8
+            ],
+            "angle": 0.3,
+            "penumbra": 1
+          },
+          "pointLight": {
+            "position": [
+              -6,
+              -6,
+              -6
+            ]
+          }
+        },
+        "controls": {
+          "enableZoom": true,
+          "enablePan": true,
+          "enableRotate": true,
+          "autoRotate": true,
+          "autoRotateSpeed": 0.7
+        }
+      }
+    },
+    "flats": {
+      "101": {
+        "flatNumber": "101",
+        "type": "2 BHK",
+        "area": "1250 sq ft",
+        "price": "₹85 Lakhs",
+        "status": "Available",
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "facing": "East",
+        "amenities": [
+          "Modern Kitchen",
+          "Balcony",
+          "Garden View"
+        ],
+        "images": [
+          "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
+          "https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg",
+          "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg",
+          "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg",
+          "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg"
+        ],
+        "videos": [
+          "https://example.com/flat101-tour.mp4"
+        ],
+        "threeDModel": {
+          "path": "/models/flat101_2bhk.glb",
+          "viewerConfig": {
+            "camera": {
+              "position": [
+                0,
+                5,
+                7
+              ],
+              "fov": 50
+            },
+            "lights": {
+              "ambientLight": {
+                "intensity": 0.5
+              },
+              "spotLight": {
+                "position": [
+                  8,
+                  8,
+                  8
+                ],
+                "angle": 0.3,
+                "penumbra": 1
+              },
+              "pointLight": {
+                "position": [
+                  -6,
+                  -6,
+                  -6
+                ]
+              }
+            },
+            "controls": {
+              "enableZoom": true,
+              "enablePan": true,
+              "enableRotate": true,
+              "autoRotate": true,
+              "autoRotateSpeed": 0.7
+            }
+          }
+        }
+      },
+      "203": {
+        "flatNumber": "203",
+        "type": "3 BHK",
+        "area": "1650 sq ft",
+        "price": "₹1.2 Crores",
+        "status": "Limited Availability",
+        "bedrooms": 3,
+        "bathrooms": 3,
+        "facing": "North",
+        "amenities": [
+          "Modern Kitchen",
+          "Balcony",
+          "Garden View",
+          "Study Room"
+        ],
+        "images": [
+          "https://images.pexels.com/photos/1571459/pexels-photo-1571459.jpeg",
+          "https://images.pexels.com/photos/1571461/pexels-photo-1571461.jpeg"
+        ],
+        "videos": [
+          "https://example.com/flat203-tour.mp4"
+        ],
+        "threeDModel": {
+          "path": "/models/comp_Building_view.glb",
+          "viewerConfig": {
+            "camera": {
+              "position": [
+                0,
+                5,
+                7
+              ],
+              "fov": 50
+            },
+            "lights": {
+              "ambientLight": {
+                "intensity": 0.5
+              },
+              "spotLight": {
+                "position": [
+                  8,
+                  8,
+                  8
+                ],
+                "angle": 0.3,
+                "penumbra": 1
+              },
+              "pointLight": {
+                "position": [
+                  -6,
+                  -6,
+                  -6
+                ]
+              }
+            },
+            "controls": {
+              "enableZoom": true,
+              "enablePan": true,
+              "enableRotate": true,
+              "autoRotate": true,
+              "autoRotateSpeed": 0.7
+            }
+          }
+        }
+      },
+      "305": {
+        "flatNumber": "305",
+        "type": "3 BHK Premium",
+        "area": "1850 sq ft",
+        "price": "₹1.5 Crores",
+        "status": "Sold",
+        "bedrooms": 3,
+        "bathrooms": 3,
+        "facing": "West",
+        "amenities": [
+          "Modular Kitchen",
+          "Balcony",
+          "Garden View",
+          "Walk-in Closet"
+        ],
+        "images": [
+          "https://images.pexels.com/photos/1571470/pexels-photo-1571470.jpeg",
+          "https://images.pexels.com/photos/1571472/pexels-photo-1571472.jpeg"
+        ],
+        "videos": [
+          "https://example.com/flat305-tour.mp4"
+        ]
+       
+      }
+    },
+    "amenities": [
+      "Swimming Pool",
+      "Gymnasium",
+      "Children's Play Area",
+      "Landscaped Gardens",
+      "24/7 Security",
+      "Power Backup",
+      "Rainwater Harvesting",
+      "Clubhouse"
+    ],
+    "gallery": {
+      "images": [
+        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
+        "https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg",
+        "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg",
+        "https://images.pexels.com/photos/1571459/pexels-photo-1571459.jpeg",
+        "https://images.pexels.com/photos/1571461/pexels-photo-1571461.jpeg",
+        "https://images.pexels.com/photos/1571470/pexels-photo-1571470.jpeg"
+      ],
+      "videos": [
+        "https://example.com/vista-imperia-tour.mp4",
+        "https://example.com/construction-progress.mp4"
+      ]
+    },
+    "projectMembers": [
+      {
+        "name": "Rajesh Kumar",
+        "role": "Architecture",
+        "experience": "15+ years",
+        "photo": "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg"
+      },
+      {
+        "name": "Priya Sharma",
+        "role": "Structural Designer",
+        "experience": "12+ years",
+        "photo": "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg"
+      },
+      {
+        "name": "Amit Patel",
+        "role": "Legal Advisor",
+        "experience": "18+ years",
+        "photo": "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg"
+      }
+    ]
+  },
+  "MK Mall": {
+    "name": "MK Mall",
+    "tagline": "Premium Commercial Spaces",
+    "maharera": "P52100000458",
+    "buildingDetails": {
+      "location": "Kharadi, Pune",
+      "possession": "June 2024",
+      "contractor": "XYZ Builders Pvt Ltd",
+      "launchYear": "2022",
+      "currentStatus": "Ready to Move",
+      "coordinates": {
+        "lat": 18.5513,
+        "lng": 73.9370
+      }
+    },
+    "buildingFeatures": {
+      "floors": 8,
+      "totalFlats": 85,
+      "elevators": 2,
+      "parkingLevel": 3
+    },
+    "threeDModel": {
+      "path": "/models/studio_apartment.glb",
+      "viewerConfig": {
+        "camera": {
+          "position": [
+            0,
+            5,
+            7
+          ],
+          "fov": 50
+        },
+        "lights": {
+          "ambientLight": {
+            "intensity": 0.5
+          },
+          "spotLight": {
+            "position": [
+              8,
+              8,
+              8
+            ],
+            "angle": 0.3,
+            "penumbra": 1
+          },
+          "pointLight": {
+            "position": [
+              -6,
+              -6,
+              -6
+            ]
+          }
+        },
+        "controls": {
+          "enableZoom": false,
+          "enablePan": false,
+          "enableRotate": true,
+          "autoRotate": true,
+          "autoRotateSpeed": 0.7
+        }
+      }
+    },
+    "flats": {
+      "101": {
+        "flatNumber": "S-101",
+        "type": "Shop",
+        "area": "450 sq ft",
+        "price": "₹45 Lakhs",
+        "status": "Available",
+        "bedrooms": 0,
+        "bathrooms": 1,
+        "facing": "South",
+        "amenities": [
+          "AC Ready",
+          "Wide Frontage",
+          "High Ceiling"
+        ],
+        "images": [
+          "https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg",
+          "https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg"
+        ],
+        "videos": [
+          "https://example.com/shop101-tour.mp4"
+        ],
+        "threeDModel": {
+          "path": "/models/comp_Building_view.glb",
+          "viewerConfig": {
+            "camera": {
+              "position": [
+                0,
+                5,
+                7
+              ],
+              "fov": 50
+            },
+            "lights": {
+              "ambientLight": {
+                "intensity": 0.5
+              },
+              "spotLight": {
+                "position": [
+                  8,
+                  8,
+                  8
+                ],
+                "angle": 0.3,
+                "penumbra": 1
+              },
+              "pointLight": {
+                "position": [
+                  -6,
+                  -6,
+                  -6
+                ]
+              }
+            },
+            "controls": {
+              "enableZoom": true,
+              "enablePan": true,
+              "enableRotate": true,
+              "autoRotate": true,
+              "autoRotateSpeed": 0.7
+            }
+          }
+        }
+      },
+      "203": {
+        "flatNumber": "O-203",
+        "type": "Office",
+        "area": "850 sq ft",
+        "price": "₹75 Lakhs",
+        "status": "Available",
+        "bedrooms": 0,
+        "bathrooms": 2,
+        "facing": "North",
+        "amenities": [
+          "AC Ready",
+          "Conference Room",
+          "Pantry Area"
+        ],
+        "images": [
+          "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
+          "https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg"
+        ],
+        "videos": [
+          "https://example.com/office203-tour.mp4"
+        ]
+      },
+      "305": {
+        "flatNumber": "O-305",
+        "type": "Office Premium",
+        "area": "1200 sq ft",
+        "price": "₹1.1 Crores",
+        "status": "Limited Availability",
+        "bedrooms": 0,
+        "bathrooms": 3,
+        "facing": "East",
+        "amenities": [
+          "Fully Furnished",
+          "Conference Room",
+          "Reception Area",
+          "Pantry"
+        ],
+        "images": [
+          "https://images.pexels.com/photos/1571470/pexels-photo-1571470.jpeg",
+          "https://images.pexels.com/photos/1571472/pexels-photo-1571472.jpeg"
+        ],
+        "videos": [
+          "https://example.com/office305-tour.mp4"
+        ]
+      }
+    },
+    "amenities": [
+      "Food Court",
+      "ATM",
+      "24/7 Security",
+      "Escalators",
+      "Centralized AC",
+      "Fire Safety Systems",
+      "CCTV Surveillance",
+      "Ample Parking"
+    ],
+    "gallery": {
+      "images": [
+        "https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg",
+        "https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg",
+        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
+        "https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg"
+      ],
+      "videos": [
+        "https://example.com/mk-mall-tour.mp4"
+      ]
+    },
+    "projectMembers": [
+      {
+        "name": "Suresh Jain",
+        "role": "Architecture",
+        "experience": "20+ years",
+        "photo": "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg"
+      },
+      {
+        "name": "Neha Gupta",
+        "role": "Structural Designer",
+        "experience": "14+ years",
+        "photo": "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg"
+      },
+      {
+        "name": "Vikram Singh",
+        "role": "Legal Advisor",
+        "experience": "16+ years",
+        "photo": "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg"
+      }
+    ]
+  }
+}

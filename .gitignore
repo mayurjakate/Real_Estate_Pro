@@ -1,0 +1,13 @@
+# Ignore node_modules
+node_modules/
+dist/
+
+# Ignore media folders and their contents, but keep the folders
+public/models/*
+!public/models/.gitkeep
+public/images/*
+!public/images/.gitkeep
+public/videos/*
+!public/videos/.gitkeep
+public/Shree_Gajanan_Enclave/*
+!public/Shree_Gajanan_Enclave/.gitkeep
