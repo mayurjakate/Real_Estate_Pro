@@ -11,11 +11,14 @@ import sitesData from "./components/data/sites.json";
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+
 function App() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(false); // New state for desktop collapse
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [activeSection, setActiveSection] = useState('building');
   const [selectedSite, setSelectedSite] = useState('Vista Imperia');
+  const [selectedFlatNumber, setSelectedFlatNumber] = useState<string | null>(null); // New state to store the selected flat number
+  
   const sites = Object.keys(sitesData);
   const currentSiteData = sitesData[selectedSite as keyof typeof sitesData];
 
@@ -23,7 +26,7 @@ function App() {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
-        setIsMobileOpen(false); // Close mobile sidebar on desktop
+        setIsMobileOpen(false);
       }
     };
     window.addEventListener('resize', handleResize);
@@ -32,6 +35,7 @@ function App() {
 
   const handleFlatSelect = (flatNumber: string) => {
     setActiveSection('flat');
+    setSelectedFlatNumber(flatNumber); // Set the selected flat number
     if (window.innerWidth < 1024) {
       setIsMobileOpen(false);
     }
@@ -49,7 +53,8 @@ function App() {
       case 'building':
         return <BuildingInfo siteData={currentSiteData} />;
       case 'flat':
-        return <FlatInfo siteData={currentSiteData} />;
+        // Pass the selectedFlatNumber to the FlatInfo component
+        return <FlatInfo siteData={currentSiteData} flatNumber={selectedFlatNumber} />;
       case 'units':
         return <Units siteData={currentSiteData} onFlatSelect={handleFlatSelect} />;
       case 'gallery':

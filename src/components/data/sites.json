@@ -2,7 +2,7 @@
   "Vista Imperia": {
     "name": "Vista Imperia",
     "tagline": "Premium Luxurious Flats",
-    "maharera": "P52100000293",
+    "maharera": "P50300050883",
     "buildingDetails": {
       "location": "Baner, Pune",
       "possession": "December 2025",
@@ -24,11 +24,7 @@
       "path": "/models/comp_Building_view.glb",
       "viewerConfig": {
         "camera": {
-          "position": [
-            0,
-            5,
-            7
-          ],
+          "position": [38.82, -2.18, -1.51],"target": [-0.16, -1.86, 0.07],
           "fov": 50
         },
         "lights": {
@@ -64,7 +60,7 @@
     "flats": {
       "101": {
         "flatNumber": "101",
-        "type": "2 BHK",
+        "type": "A-3 BHK",
         "area": "1250 sq ft",
         "price": "₹85 Lakhs",
         "status": "Available",
@@ -79,22 +75,20 @@
         "images": [
           "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
           "https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg",
-          "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg",
-          "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg",
           "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg"
         ],
         "videos": [
           "https://example.com/flat101-tour.mp4"
         ],
         "threeDModel": {
-          "path": "/models/flat101_2bhk.glb",
+          "path": "/models/wing-A-3bhk-1309.glb",
           "viewerConfig": {
             "camera": {
               "position": [
-                0,
-                5,
-                7
-              ],
+                1,
+                1,
+                1
+              ],"target": [2,3,4],
               "fov": 50
             },
             "lights": {
@@ -128,9 +122,9 @@
           }
         }
       },
-      "203": {
-        "flatNumber": "203",
-        "type": "3 BHK",
+      "202": {
+        "flatNumber": "202",
+        "type": "A-2 BHK",
         "area": "1650 sq ft",
         "price": "₹1.2 Crores",
         "status": "Limited Availability",
@@ -151,14 +145,10 @@
           "https://example.com/flat203-tour.mp4"
         ],
         "threeDModel": {
-          "path": "/models/comp_Building_view.glb",
+          "path": "/models/wing-A-2bhk-1309.glb",
           "viewerConfig": {
             "camera": {
-              "position": [
-                0,
-                5,
-                7
-              ],
+              "position": [0.56, -0.07, 1.43],"target": [0.55, -0.73, 0.04],
               "fov": 50
             },
             "lights": {
@@ -243,29 +233,29 @@
     },
     "projectMembers": [
       {
-        "name": "Rajesh Kumar",
-        "role": "Architecture",
-        "experience": "15+ years",
-        "photo": "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg"
+        "name": "Mr. Rajen Patil.",
+        "role": "Construction Management",
+        "experience": "25+ years",
+        "photo": "/images/team_member/rajen_patil.jpeg"
       },
       {
-        "name": "Priya Sharma",
-        "role": "Structural Designer",
-        "experience": "12+ years",
-        "photo": "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg"
+        "name": "Mr. Shailesh Thuse.",
+        "role": "Property Management",
+        "experience": "10+ years",
+        "photo": "/images/team_member/shailesh_thuse.jpeg"
       },
       {
-        "name": "Amit Patel",
-        "role": "Legal Advisor",
-        "experience": "18+ years",
-        "photo": "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg"
+        "name": "Mr. Dipak Walgaonkar.",
+        "role": "Construction Management",
+        "experience": "19+ years",
+        "photo": "/images/team_member/dipak_walgaonkar.jpeg"
       }
     ]
   },
   "MK Mall": {
     "name": "MK Mall",
     "tagline": "Premium Commercial Spaces",
-    "maharera": "P52100000458",
+    "maharera": "P50300050883",
     "buildingDetails": {
       "location": "Kharadi, Pune",
       "possession": "June 2024",
@@ -291,7 +281,7 @@
             0,
             5,
             7
-          ],
+          ],"target": [0, 0, 0],
           "fov": 50
         },
         "lights": {
@@ -354,7 +344,7 @@
                 0,
                 5,
                 7
-              ],
+              ],"target": [0, 0, 0],
               "fov": 50
             },
             "lights": {
@@ -457,22 +447,22 @@
     },
     "projectMembers": [
       {
-        "name": "Suresh Jain",
+        "name": "Mr. Rajen Patil.",
         "role": "Architecture",
-        "experience": "20+ years",
-        "photo": "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg"
+        "experience": "15+ years",
+        "photo": "/images/team_member/rajen_patil.jpeg"
       },
       {
-        "name": "Neha Gupta",
+        "name": "Mr. Shailesh Thuse.",
         "role": "Structural Designer",
-        "experience": "14+ years",
-        "photo": "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg"
+        "experience": "12+ years",
+        "photo": "/images/team_member/shailesh_thuse.jpeg"
       },
       {
-        "name": "Vikram Singh",
+        "name": "Mr. Dipak Walgaonkar.",
         "role": "Legal Advisor",
-        "experience": "16+ years",
-        "photo": "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg"
+        "experience": "18+ years",
+        "photo": "/images/team_member/dipak_walgaonkar.jpeg"
       }
     ]
   }

@@ -25,23 +25,15 @@ const ProjectMembers: React.FC<ProjectMembersProps> = ({ siteData }) => {
 
   return (
     <div className="space-y-8">
-      {/* Header */}
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Project Team</h1>
-        <p className="text-xl text-gray-600">
-          Meet the expert professionals behind {siteData?.name}
-        </p>
-      </div>
-
+      
       {/* Team Overview */}
       <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8 rounded-xl">
         <div className="text-center">
           <Users size={48} className="mx-auto mb-4" />
-          <h2 className="text-3xl font-bold mb-4">Expert Team</h2>
-          <p className="text-xl opacity-90">
-            Our team combines decades of experience with innovative approaches to deliver 
-            exceptional real estate projects that exceed expectations.
-          </p>
+          <h2 className="text-3xl font-bold mb-4">Our Project Team</h2>
+          <p className="text-xl ">
+          Meet the expert professionals behind {siteData?.name}
+        </p>
         </div>
       </div>
 
