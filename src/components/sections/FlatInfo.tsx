@@ -377,36 +377,32 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
           {/* 3D Model Section */}
           <div className="bg-white rounded-xl shadow-lg p-6">
             <h3 className="text-xl font-bold text-gray-900 mb-4">3D Model</h3>
-            <div className="h-48 rounded-lg mb-4">
-              {modelPath ? (
-                <Suspense fallback={loadingFallback}>
-                  <BuildingViewer modelPath={modelPath} config={viewerConfig} />
-                </Suspense>
-              ) : (
-                noModelFallback
-              )}
-            </div>
+            <div className="relative w-full aspect-[16/9] rounded-lg mb-4 border-2 border-dashed border-indigo-300">
+            {modelPath ? (
+              <Suspense fallback={loadingFallback}>
+                <BuildingViewer modelPath={modelPath} config={viewerConfig} />
+              </Suspense>
+            ) : (
+              loadingFallback
+            )}
+          </div>
+           <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border border-green-200">
+                      <div className="flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0 sm:space-x-3"> {/* Stacks vertically on mobile */}
+                        <div className="flex items-center space-x-3">
+                          <QrCode className="text-green-600" size={24} />
+                          <div>
+                            <p className="font-medium text-gray-900">AR Experience</p>
+                            <p className="text-sm text-gray-600">Scan to view in AR</p>
+                          </div>
+                        </div>
+                        <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors w-full sm:w-auto"> {/* Full width on mobile, auto on desktop */}
+                          Open AR
+                        </button>
+                      </div>
+                    </div>
           </div>
 
-          {/* AR QR Code Section */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">AR Experience</h3>
-            <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-lg border border-green-200">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <QrCode className="text-green-600" size={32} />
-                  <div>
-                    <p className="font-medium text-gray-900">View in AR</p>
-                    <p className="text-sm text-gray-600">Experience the flat virtually</p>
-                  </div>
-                </div>
-                <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 
-                                   rounded-lg font-medium transition-colors">
-                  Open AR
-                </button>
-              </div>
-            </div>
-          </div>
+        
         </div>
       </div>
 

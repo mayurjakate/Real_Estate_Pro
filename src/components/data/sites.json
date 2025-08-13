@@ -84,11 +84,8 @@
           "path": "/models/wing-A-3bhk-1309.glb",
           "viewerConfig": {
             "camera": {
-              "position": [
-                1,
-                1,
-                1
-              ],"target": [2,3,4],
+              "position": [1.39, 0.97, 3.81],
+    "target": [1.56, -1.41, -1.20],
               "fov": 50
             },
             "lights": {
@@ -148,7 +145,8 @@
           "path": "/models/wing-A-2bhk-1309.glb",
           "viewerConfig": {
             "camera": {
-              "position": [0.56, -0.07, 1.43],"target": [0.55, -0.73, 0.04],
+              "position": [1.50, 2.72, 5.60],
+    "target": [1.67, -1.31, -1.26],
               "fov": 50
             },
             "lights": {

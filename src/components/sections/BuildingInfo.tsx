@@ -122,7 +122,7 @@ const BuildingInfo: React.FC<BuildingInfoProps> = ({ siteData }) => {
   Building Features
 </h2>
 
-<div className="bg-white rounded-xl shadow-lg p-6">
+<div className="">
   <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
     {buildingFeatures.map((feature, index) => (
       <div
