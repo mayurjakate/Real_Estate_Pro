@@ -70,7 +70,7 @@ const BuildingInfo: React.FC<BuildingInfoProps> = ({ siteData }) => {
 
   return (
     // Main container with responsive padding and max-width for larger screens
-    <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8 space-y-8">
+    <div className="container mx-auto px-2 py-8 sm:px-6 lg:px-8 space-y-8">
       {/* Project Header */}
       <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 sm:p-8 rounded-xl shadow-lg">
         {/* Responsive font sizes for heading and tagline */}
@@ -105,15 +105,18 @@ const BuildingInfo: React.FC<BuildingInfoProps> = ({ siteData }) => {
           </div>
 
           {/* Google Map Placeholder */}
-          <div className="mt-6 aspect-[16/9] bg-gradient-to-br from-blue-100 to-indigo-100 rounded-lg flex items-center justify-center border-2 border-dashed border-indigo-300">
-            <div className="text-center text-indigo-600">
-              <MapPin size={32} className="mx-auto mb-2" />
-              <p className="font-medium text-base sm:text-lg">Google Map Integration</p> {/* Responsive text size */}
-              <p className="text-xs sm:text-sm">
-                Location: {siteData?.buildingDetails?.location}
-              </p>
-            </div>
-          </div>
+        <div className="mt-6 aspect-[16/9] bg-gradient-to-br from-blue-100 to-indigo-100 rounded-lg flex items-center justify-center border-2 border-dashed border-indigo-300">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d653.1071586599185!2d77.76374065543803!3d20.954138388574645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd6a34c0a3c6fc5%3A0x6ac92e8208ebccc4!2sDR%20City!5e1!3m2!1sen!2sin!4v1755243105410!5m2!1sen!2sin"
+    width="100%"
+    height="100%"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="Our Location"
+  ></iframe>
+</div>
         </div>
 
         {/* Building Features */}
@@ -139,7 +142,9 @@ const BuildingInfo: React.FC<BuildingInfoProps> = ({ siteData }) => {
 
           {/* 3D Model View */}
           {/* Aspect ratio ensures consistent height relative to width */}
+          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">3D Model</h3>
           <div className="relative w-full aspect-[16/9] rounded-lg mb-4 border-2 border-dashed border-indigo-300">
+          
             {modelPath ? (
               <Suspense fallback={loadingFallback}>
                 <BuildingViewer modelPath={modelPath} config={viewerConfig} />
@@ -168,58 +173,78 @@ const BuildingInfo: React.FC<BuildingInfoProps> = ({ siteData }) => {
       </div>
 
       {/* Media Carousel */}
-      <div className="bg-white rounded-xl shadow-lg p-6">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 space-y-4 sm:space-y-0"> {/* Stacks on mobile */}
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Project Media</h2> {/* Responsive text size */}
-          <div className="flex items-center space-x-2 text-gray-600">
-            <ImageIcon size={20} />
-            <span>{media.length} items</span>
+<div className="bg-white rounded-xl shadow-lg p-6">
+  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 space-y-4 sm:space-y-0">
+    <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Project Media</h2>
+    <div className="flex items-center space-x-2 text-gray-600">
+      {/* Assuming ImageIcon is imported from lucide-react */}
+      <ImageIcon size={20} />
+      <span>{media.length} items</span>
+    </div>
+  </div>
+
+  {/* Responsive grid for media items */}
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+    {media.slice(0, 8).map((item, index) => {
+      const isVideo = item.includes(".mp4"); // Simplified check for video
+      // Construct the poster URL for videos
+      const posterUrl = isVideo ? item.replace('.mp4', '.png').replace('/videos/exterior/', '/videos/exterior/img_') : '';
+
+      return (
+        <div
+          key={index}
+          className="relative group cursor-pointer rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105"
+          onClick={() => openModal(index)}
+        >
+          {isVideo ? (
+            <video
+              src={item} // Set video source
+              poster={posterUrl} // Set poster (thumbnail)
+              controls={false} // Hide default controls initially; you might show them on hover/modal
+              preload="metadata" // Preload metadata for faster playback and poster display
+              className="w-full aspect-video object-cover"
+              // Handle error if video fails to load, maybe show a generic video thumbnail
+              onError={(e) => {
+                (e.target as HTMLVideoElement).onerror = null;
+                (e.target as HTMLVideoElement).src = `https://placehold.co/600x400/E0E7FF/4F46E5?text=Video+Error`; // Placeholder for failed video
+              }}
+            >
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            // Existing image rendering logic
+            <img
+              src={item}
+              alt={`Media ${index + 1}`}
+              className="w-full aspect-video object-cover"
+              onError={(e) => {
+                (e.target as HTMLImageElement).onerror = null;
+                (e.target as HTMLImageElement).src = `https://placehold.co/600x400/E0E7FF/4F46E5?text=Image+${index + 1}`;
+              }}
+            />
+          )}
+          {/* Overlay with Play icon for videos, or generic image icon for images */}
+          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200 flex items-center justify-center">
+            {isVideo ? (
+              <Play className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200" size={32} />
+            ) : (
+              <ImageIcon className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200" size={24} />
+            )}
           </div>
         </div>
+      );
+    })}
 
-        {/* Responsive grid for media items */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {media.slice(0, 8).map((item, index) => (
-            <div
-              key={index}
-              className="relative group cursor-pointer rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105"
-              onClick={() => openModal(index)}
-            >
-              {item.includes(".mp4") || item.includes("video") ? (
-                <div className="aspect-video bg-gray-800 flex items-center justify-center">
-                  <Play className="text-white" size={32} />
-                </div>
-              ) : (
-                // Use a placeholder image if the actual image URL is not valid or available
-                <img
-                  src={item}
-                  alt={`Media ${index + 1}`}
-                  className="w-full aspect-video object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).onerror = null; // Prevent infinite loop
-                    (e.target as HTMLImageElement).src = `https://placehold.co/600x400/E0E7FF/4F46E5?text=Image+${index + 1}`; // Placeholder
-                  }}
-                />
-              )}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200 flex items-center justify-center">
-                <ImageIcon
-                  className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                  size={24}
-                />
-              </div>
-            </div>
-          ))}
-
-          {media.length > 8 && (
-            <div className="aspect-video bg-gradient-to-br from-indigo-100 to-purple-100 rounded-lg flex items-center justify-center border-2 border-dashed border-indigo-300">
-              <div className="text-center text-indigo-600">
-                <p className="font-medium">+{media.length - 8}</p>
-                <p className="text-sm">more items</p>
-              </div>
-            </div>
-          )}
+    {media.length > 8 && (
+      <div className="aspect-video bg-gradient-to-br from-indigo-100 to-purple-100 rounded-lg flex items-center justify-center border-2 border-dashed border-indigo-300">
+        <div className="text-center text-indigo-600">
+          <p className="font-medium">+{media.length - 8}</p>
+          <p className="text-sm">more items</p>
         </div>
       </div>
+    )}
+  </div>
+</div>
 
       <ImageModal
         isOpen={modalOpen}

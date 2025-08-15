@@ -4,7 +4,7 @@
     "tagline": "Premium Luxurious Flats",
     "maharera": "P50300050883",
     "buildingDetails": {
-      "location": "Baner, Pune",
+      "location": "Shegaon Naka",
       "possession": "December 2025",
       "contractor": "ABC Construction Ltd",
       "launchYear": "2023",
@@ -40,12 +40,13 @@
             "angle": 0.3,
             "penumbra": 1
           },
+          "directionalLight":{"position":[5, 5, 5], "intensity":100},
           "pointLight": {
             "position": [
-              -6,
-              -6,
-              -6
-            ]
+              0, 3, 0
+            ],
+            "intensity": 0.5,
+             "color":"#ff9900"
           }
         },
         "controls": {
@@ -53,7 +54,7 @@
           "enablePan": true,
           "enableRotate": true,
           "autoRotate": true,
-          "autoRotateSpeed": 0.7
+          "autoRotateSpeed": 1
         }
       }
     },
@@ -78,7 +79,7 @@
           "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg"
         ],
         "videos": [
-          "https://example.com/flat101-tour.mp4"
+          "/videos/exterior/video1.mp4"
         ],
         "threeDModel": {
           "path": "/models/wing-A-3bhk-1309.glb",
@@ -225,8 +226,8 @@
         "https://images.pexels.com/photos/1571470/pexels-photo-1571470.jpeg"
       ],
       "videos": [
-        "https://example.com/vista-imperia-tour.mp4",
-        "https://example.com/construction-progress.mp4"
+        "./videos/exterior/video1.mp4",
+        "./videos/exterior/video2.mp4"
       ]
     },
     "projectMembers": [
@@ -255,7 +256,7 @@
     "tagline": "Premium Commercial Spaces",
     "maharera": "P50300050883",
     "buildingDetails": {
-      "location": "Kharadi, Pune",
+      "location": "Shegaon Naka",
       "possession": "June 2024",
       "contractor": "XYZ Builders Pvt Ltd",
       "launchYear": "2022",

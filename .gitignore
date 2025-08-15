@@ -1,6 +1,7 @@
 # Ignore node_modules
 node_modules/
 dist/
+dist.zip
 
 # Ignore media folders and their contents, but keep the folders
 public/models/*

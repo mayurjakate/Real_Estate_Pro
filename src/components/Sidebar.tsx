@@ -1,11 +1,101 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Building, Home, Grid3x3, Images, Sparkles, Mail, Users,
   ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Linkedin,
-  ChevronDown
+  ChevronDown, Search
 } from 'lucide-react';
-import SiteSelector from './SiteSelector';
 import { motion, AnimatePresence } from 'framer-motion';
+
+interface MockSiteSelectorProps {
+  sites: string[];
+  selectedSite: string;
+  onSiteChange: (site: string) => void;
+}
+
+const SiteSelector: React.FC<MockSiteSelectorProps> = ({ sites, selectedSite, onSiteChange }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const filteredSites = sites.filter(site =>
+    site.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className="relative w-full" ref={dropdownRef}>
+      <button
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        className="flex items-center justify-between w-full px-4 py-2.5 bg-indigo-700 text-white rounded-lg shadow-md
+                   hover:bg-indigo-800 transition-colors text-base"
+      >
+        <span className="font-medium truncate">{selectedSite}</span>
+        <ChevronDown
+          size={16}
+          className={`transform transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
+        />
+      </button>
+
+      <AnimatePresence>
+        {isDropdownOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full left-0 mt-2 w-full bg-white rounded-lg shadow-xl border border-gray-200 z-20"
+          >
+            <div className="p-3 border-b border-gray-100">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
+                <input
+                  type="text"
+                  placeholder="Search sites..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 text-sm text-gray-800 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="max-h-60 overflow-y-auto">
+              {filteredSites.length > 0 ? (
+                filteredSites.map((siteOption) => (
+                  <button
+                    key={siteOption}
+                    onClick={() => {
+                      onSiteChange(siteOption);
+                      setIsDropdownOpen(false);
+                      setSearchTerm('');
+                    }}
+                    className={`w-full text-left p-3 text-gray-800 hover:bg-indigo-50 transition-colors
+                                ${selectedSite === siteOption ? 'bg-indigo-100 font-semibold' : ''}`}
+                  >
+                    {siteOption}
+                  </button>
+                ))
+              ) : (
+                <div className="p-3 text-center text-gray-500 text-sm">No matching sites.</div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 interface SidebarProps {
   isMobileOpen: boolean;
@@ -48,23 +138,27 @@ const Sidebar: React.FC<SidebarProps> = ({
   onSiteChange
 }) => {
   const [isMounted, setIsMounted] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(0);
+
   useEffect(() => {
     setIsMounted(true);
+    const header = document.querySelector('header');
+    if (header) {
+      setHeaderHeight(header.offsetHeight);
+    }
     return () => setIsMounted(false);
   }, []);
 
   if (!isMounted) return null;
 
-  // Common sidebar content to be used in both desktop and mobile views
   const renderSidebarContent = (isMobile = false) => (
     <>
-      {/* Site Selector - only visible when not collapsed or on mobile */}
       {(!isCollapsed || isMobile) && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="flex-shrink-0 py-6 px-4"
+          className="flex-shrink-0 py-4 px-4"
         >
           <motion.div whileHover={{ scale: 1.01 }}>
             <SiteSelector
@@ -77,19 +171,13 @@ const Sidebar: React.FC<SidebarProps> = ({
         </motion.div>
       )}
 
-      {/* Navigation */}
       <nav className="flex-1 overflow-y-auto">
-        <ul className="space-y-2 px-2">
+        <ul className={`space-y-2 px-2 ${isCollapsed && !isMobile ? 'pt-6 lg:pt-8' : ''}`}>
           {navigationItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
-
             return (
-              <motion.li
-                key={item.id}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
+              <motion.li key={item.id} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <button
                   onClick={() => setActiveSection(item.id)}
                   className={`
@@ -106,7 +194,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                     <motion.span
                       initial={{ opacity: 0, x: 10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className={`ml-3 font-medium text-left`}
+                      className="ml-3 font-medium text-left"
                     >
                       {item.label}
                     </motion.span>
@@ -118,7 +206,6 @@ const Sidebar: React.FC<SidebarProps> = ({
         </ul>
       </nav>
 
-      {/* Social Media Icons */}
       {(!isCollapsed || isMobileOpen) && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -150,34 +237,34 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <>
-      {/* Desktop Sidebar - Always visible on desktop */}
+      {/* Desktop */}
       <motion.div
+        style={{ top: headerHeight }}
         className={`
-          hidden lg:flex fixed top-16 right-0 bottom-0
+          hidden lg:flex fixed bottom-0
           bg-gradient-to-b from-indigo-900 via-purple-900 to-indigo-900
           text-white z-30 flex-col transition-all duration-300
-          ${isCollapsed ? 'lg:w-16' : 'lg:w-64'}
+          ${isCollapsed ? 'lg:w-16 right-0' : 'lg:w-64 right-0'}
         `}
       >
         {renderSidebarContent()}
-
-        {/* Collapse Button - Fixed to the middle on desktop */}
         <motion.button
           onClick={() => setIsCollapsed(!isCollapsed)}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="absolute left-0 top-1/2 -translate-y-1/2 p-2 rounded-full z-50 bg-indigo-900 text-white shadow-lg hover:bg-indigo-800 transition-colors"
+          className="absolute -left-4 top-1/2 -translate-y-1/2 p-2 rounded-full z-50 bg-indigo-900 text-white shadow-lg hover:bg-indigo-800 transition-colors"
         >
           {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
         </motion.button>
       </motion.div>
 
-      {/* Mobile Sidebar - Animated drawer for mobile */}
+      {/* Mobile */}
       <AnimatePresence>
         {isMobileOpen && (
           <>
             <motion.div
-              className="fixed top-16 right-0 bottom-0 z-40 w-64 bg-gradient-to-b from-indigo-900 via-purple-900 to-indigo-900 text-white flex flex-col lg:hidden"
+              style={{ top: headerHeight }}
+              className="fixed right-0 bottom-0 z-40 w-64 bg-gradient-to-b from-indigo-900 via-purple-900 to-indigo-900 text-white flex flex-col lg:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -186,7 +273,6 @@ const Sidebar: React.FC<SidebarProps> = ({
               {renderSidebarContent(true)}
             </motion.div>
 
-            {/* Mobile Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}

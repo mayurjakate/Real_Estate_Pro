@@ -10,7 +10,7 @@ import ProjectMembers from './components/sections/ProjectMembers';
 import sitesData from "./components/data/sites.json";
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import ContactButtons from './components/ContactButtons.tsx';
 
 function App() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -21,6 +21,11 @@ function App() {
   
   const sites = Object.keys(sitesData);
   const currentSiteData = sitesData[selectedSite as keyof typeof sitesData];
+
+  
+  // Dummy contact numbers for the purpose of this example
+  const CONTACT_PHONE = '+918779780901';
+  const CONTACT_WHATSAPP = '918779780901'; // WhatsApp number without '+'
 
   // Handle responsive sidebar behavior on resize
   useEffect(() => {
@@ -73,21 +78,39 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Top Bar - Always visible */}
-      <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
-        <div className="flex items-center justify-between px-6 py-4">
-          <div className="text-left lg:text-right">
-            <h1 className="text-lg font-semibold text-gray-900">DR City</h1>
-            <p className="text-sm text-gray-600">Professional Property Management</p>
-          </div>
-          {/* Burger icon for mobile */}
-          <button
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="p-2 text-gray-700 lg:hidden"
-          >
-            {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </header>
+      <header className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+  <div className="flex items-center justify-between px-6 py-4">
+    {/* Left side - Title */}
+    <div className="flex items-center space-x-3">
+  {/* Logo */}
+  <img
+    src="/images/builder_logo.png"
+    alt="DR City Logo"
+    className="w-10 h-10 object-contain"
+  />
+
+  {/* Title */}
+  <div className="text-left">
+    <h1 className="text-lg font-semibold text-white">DR City</h1>
+  </div>
+</div>
+
+    {/* Right side - Icons + Burger Menu */}
+    <div className="flex items-center space-x-3">
+      {/* Contact icons */}
+      <ContactButtons phoneNumber={CONTACT_PHONE} whatsappNumber={CONTACT_WHATSAPP} />
+
+      {/* Burger icon for mobile */}
+      <button
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+        className="p-2 text-gray-700 lg:hidden rounded-md hover:bg-gray-100 transition-colors"
+        aria-label="Toggle navigation menu"
+      >
+        {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+    </div>
+  </div>
+</header>
 
       <div className="flex flex-1">
         {/* Sidebar */}
