@@ -60,16 +60,16 @@
     },
     "flats": {
       "101": {
-        "flatNumber": "101",
-        "type": "A-3 BHK",
+        "flatNumber": "1307",
+        "type": "B-3 BHK",
         "area": "1250 sq ft",
-        "price": "₹85 Lakhs",
+        "price": "₹1.2 Crores",
         "status": "Available",
-        "bedrooms": 2,
-        "bathrooms": 2,
+        "bedrooms": 4,
+        "bathrooms": 4,
         "facing": "East",
         "amenities": [
-          "Modern Kitchen",
+          "Modular Kitchen",
           "Balcony",
           "Garden View"
         ],
@@ -82,11 +82,11 @@
           "/videos/exterior/video1.mp4"
         ],
         "threeDModel": {
-          "path": "/models/wing-A-3bhk-1309.glb",
+          "path": "/models/flat/W-B-4BHK_DUP_TYPE3.glb",
           "viewerConfig": {
             "camera": {
-              "position": [1.39, 0.97, 3.81],
-    "target": [1.56, -1.41, -1.20],
+              "position": [19.65, 9.71, -3.71],
+    "target": [-0.71, -1.72, -4.08],
               "fov": 50
             },
             "lights": {
@@ -130,7 +130,7 @@
         "bathrooms": 3,
         "facing": "North",
         "amenities": [
-          "Modern Kitchen",
+          "Modular Kitchen",
           "Balcony",
           "Garden View",
           "Study Room"
@@ -143,11 +143,11 @@
           "https://example.com/flat203-tour.mp4"
         ],
         "threeDModel": {
-          "path": "/models/wing-A-2bhk-1309.glb",
+          "path": "/models//flat/wing-A-2bhk-1309.glb",
           "viewerConfig": {
             "camera": {
-              "position": [1.50, 2.72, 5.60],
-    "target": [1.67, -1.31, -1.26],
+              "position": [3.79, 4.69, 12.67],
+    "target": [3.22, -1.75, -4.21],
               "fov": 50
             },
             "lights": {
@@ -193,8 +193,8 @@
         "amenities": [
           "Modular Kitchen",
           "Balcony",
-          "Garden View",
-          "Walk-in Closet"
+          "Garden View"
+          
         ],
         "images": [
           "https://images.pexels.com/photos/1571470/pexels-photo-1571470.jpeg",
@@ -273,14 +273,11 @@
       "parkingLevel": 3
     },
     "threeDModel": {
-      "path": "/models/studio_apartment.glb",
+      "path": "/models/new_comp_main_building.glb",
       "viewerConfig": {
         "camera": {
-          "position": [
-            0,
-            5,
-            7
-          ],"target": [0, 0, 0],
+         "position": [68.42, 4.31, -1.47],
+    "target": [0.11, 9.52, -4.72],
           "fov": 50
         },
         "lights": {
@@ -325,8 +322,8 @@
         "facing": "South",
         "amenities": [
           "AC Ready",
-          "Wide Frontage",
-          "High Ceiling"
+          "parking"
+          
         ],
         "images": [
           "https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg",
@@ -336,19 +333,16 @@
           "https://example.com/shop101-tour.mp4"
         ],
         "threeDModel": {
-          "path": "/models/comp_Building_view.glb",
+          "path": "/models/comp_low_poly_city_pack.glb",
           "viewerConfig": {
             "camera": {
-              "position": [
-                0,
-                5,
-                7
-              ],"target": [0, 0, 0],
+              "position": [178.67, 62.92, -61.28],
+    "target": [-3.79, 5.39, -62.81],
               "fov": 50
             },
             "lights": {
               "ambientLight": {
-                "intensity": 0.5
+                "intensity": 0.2
               },
               "spotLight": {
                 "position": [

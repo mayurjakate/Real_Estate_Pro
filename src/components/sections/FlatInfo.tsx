@@ -1,4 +1,4 @@
-import React, { useState, useMemo, Suspense, useEffect } from 'react';
+import React, { useState, useMemo, Suspense, useEffect } from "react";
 import {
   ChevronDown,
   Search,
@@ -12,13 +12,13 @@ import {
   QrCode,
   Building,
   Image as ImageIcon,
-  Play
-} from 'lucide-react';
+  Play,
+} from "lucide-react";
 // These imports are assumed to point to separate, existing files in your project structure.
 // The "3D Model Viewer Placeholder" appears because these external files are not compiled
 // within this interactive environment.
-import ImageModal from '../ImageModal';
-import BuildingViewer from '../BuildingViewer';
+import ImageModal from "../ImageModal";
+import BuildingViewer from "../BuildingViewer";
 
 interface FlatInfoProps {
   siteData: any;
@@ -40,14 +40,17 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
   });
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
   const filteredFlats = useMemo(() => {
-    return flatNumbers.filter(flatNumberItem =>
-      flatNumberItem.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      flats[flatNumberItem]?.type?.toLowerCase().includes(searchTerm.toLowerCase())
+    return flatNumbers.filter(
+      (flatNumberItem) =>
+        flatNumberItem.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        flats[flatNumberItem]?.type
+          ?.toLowerCase()
+          .includes(searchTerm.toLowerCase())
     );
   }, [flatNumbers, flats, searchTerm]);
 
@@ -69,8 +72,10 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
     }
   }, [flats, flatNumbers, selectedFlat]);
 
-  const currentFlat = flats[selectedFlat || ''];
-  const media = currentFlat ? [...(currentFlat.images || []), ...(currentFlat.videos || [])] : [];
+  const currentFlat = flats[selectedFlat || ""];
+  const media = currentFlat
+    ? [...(currentFlat.images || []), ...(currentFlat.videos || [])]
+    : [];
 
   const openModal = (index: number) => {
     setCurrentMediaIndex(index);
@@ -79,10 +84,14 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
 
   const getStatusColor = (status: string) => {
     switch (status?.toLowerCase()) {
-      case 'available': return 'bg-green-100 text-green-800';
-      case 'limited availability': return 'bg-yellow-100 text-yellow-800';
-      case 'sold': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case "available":
+        return "bg-green-100 text-green-800";
+      case "limited availability":
+        return "bg-yellow-100 text-yellow-800";
+      case "sold":
+        return "bg-red-100 text-red-800";
+      default:
+        return "bg-gray-100 text-gray-800";
     }
   };
 
@@ -90,8 +99,12 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
     return (
       <div className="text-center py-8 sm:py-12 px-4">
         <Home className="mx-auto text-gray-400 mb-4" size={40} />
-        <h2 className="text-lg sm:text-xl font-semibold text-gray-600">No flat data available</h2>
-        <p className="text-sm sm:text-base text-gray-500">Please select a flat or ensure data is loaded for the current site.</p>
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-600">
+          No flat data available
+        </h2>
+        <p className="text-sm sm:text-base text-gray-500">
+          Please select a flat or ensure data is loaded for the current site.
+        </p>
       </div>
     );
   }
@@ -102,9 +115,25 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
                    border-2 border-dashed border-gray-300"
     >
       <div className="text-center text-indigo-600">
-        <svg className="animate-spin h-8 w-8 text-indigo-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        <svg
+          className="animate-spin h-8 w-8 text-indigo-600 mx-auto"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
         </svg>
         <p className="mt-2 text-sm font-medium">Loading 3D Model...</p>
       </div>
@@ -133,7 +162,9 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
       {/* Flat Selection Dropdown */}
       <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Flat Information</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+            Flat Information
+          </h1>
 
           <div className="relative w-full sm:w-64">
             <button
@@ -148,7 +179,9 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
               </span>
               <ChevronDown
                 size={16}
-                className={`transform transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
+                className={`transform transition-transform ${
+                  isDropdownOpen ? "rotate-180" : ""
+                }`}
               />
             </button>
 
@@ -158,12 +191,17 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
                   className="fixed inset-0 z-10"
                   onClick={() => setIsDropdownOpen(false)}
                 />
-                <div className="absolute top-full left-0 mt-2 w-full sm:w-80 bg-white rounded-lg shadow-xl
-                                border border-gray-200 z-20">
+                <div
+                  className="absolute top-full left-0 mt-2 w-full sm:w-80 bg-white rounded-lg shadow-xl
+                                border border-gray-200 z-20"
+                >
                   <div className="p-3 border-b border-gray-100">
                     <div className="relative">
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2
-                                         text-gray-400" size={16} />
+                      <Search
+                        className="absolute left-3 top-1/2 transform -translate-y-1/2
+                                         text-gray-400"
+                        size={16}
+                      />
                       <input
                         type="text"
                         placeholder="Search flats..."
@@ -185,11 +223,16 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
                             onClick={() => {
                               setSelectedFlat(flatNumberOption);
                               setIsDropdownOpen(false);
-                              setSearchTerm('');
+                              setSearchTerm("");
                               setCurrentMediaIndex(0);
                             }}
                             className={`w-full text-left p-3 sm:p-4 hover:bg-indigo-50 transition-colors
-                                       ${selectedFlat === flatNumberOption ? 'bg-indigo-100' : ''}`}                          >
+                                       ${
+                                         selectedFlat === flatNumberOption
+                                           ? "bg-indigo-100"
+                                           : ""
+                                       }`}
+                          >
                             <div className="flex items-center justify-between">
                               <div>
                                 <div className="font-medium text-gray-900 text-sm sm:text-base">
@@ -199,7 +242,11 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
                                   {flatOption.area} • {flatOption.price}
                                 </div>
                               </div>
-                              <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(flatOption.status)}`}>
+                              <span
+                                className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
+                                  flatOption.status
+                                )}`}
+                              >
                                 {flatOption.status}
                               </span>
                             </div>
@@ -207,7 +254,9 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
                         );
                       })
                     ) : (
-                      <div className="p-4 text-center text-gray-500 text-sm">No matching flats found.</div>
+                      <div className="p-4 text-center text-gray-500 text-sm">
+                        No matching flats found.
+                      </div>
                     )}
                   </div>
                 </div>
@@ -222,41 +271,55 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
         {/* Flat Details Section */}
         <div className="space-y-6">
           <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Flat Details</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
+              Flat Details
+            </h2>
 
             <div className="grid grid-cols-2 gap-4 mb-4 sm:mb-6">
               {/* Change: Adjusted padding from 'p-4' to 'p-3' for a more compact look on mobile. */}
               <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-3 sm:p-4 rounded-lg">
                 <Home className="text-indigo-600 mb-1 sm:mb-2" size={20} />
-                <div className="text-lg sm:text-xl font-bold text-gray-900">{currentFlat.flatNumber}</div>
+                <div className="text-lg sm:text-xl font-bold text-gray-900">
+                  {currentFlat.flatNumber}
+                </div>
                 <div className="text-sm text-gray-600">Flat Number</div>
               </div>
 
               {/* Change: Adjusted padding from 'p-4' to 'p-3'. */}
               <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 sm:p-4 rounded-lg">
                 <Building className="text-blue-600 mb-1 sm:mb-2" size={20} />
-                <div className="text-lg sm:text-xl font-bold text-gray-900">{currentFlat.type}</div>
+                <div className="text-lg sm:text-xl font-bold text-gray-900">
+                  {currentFlat.type}
+                </div>
                 <div className="text-sm text-gray-600">Type</div>
               </div>
 
               {/* Change: Adjusted padding from 'p-4' to 'p-3'. */}
               <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-3 sm:p-4 rounded-lg">
                 <Maximize className="text-purple-600 mb-1 sm:mb-2" size={20} />
-                <div className="text-lg sm:text-xl font-bold text-gray-900">{currentFlat.area}</div>
+                <div className="text-lg sm:text-xl font-bold text-gray-900">
+                  {currentFlat.area}
+                </div>
                 <div className="text-sm text-gray-600">Area</div>
               </div>
 
               {/* Change: Adjusted padding from 'p-4' to 'p-3'. */}
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-3 sm:p-4 rounded-lg">
                 <DollarSign className="text-green-600 mb-1 sm:mb-2" size={20} />
-                <div className="text-lg sm:text-xl font-bold text-gray-900">{currentFlat.price}</div>
+                <div className="text-lg sm:text-xl font-bold text-gray-900">
+                  {currentFlat.price}
+                </div>
                 <div className="text-sm text-gray-600">Price</div>
               </div>
             </div>
 
             <div className="flex items-center justify-between p-3 sm:p-4 bg-gray-50 rounded-lg text-sm sm:text-base">
               <span className="font-medium text-gray-700">Status:</span>
-              <span className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium ${getStatusColor(currentFlat.status)}`}>
+              <span
+                className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium ${getStatusColor(
+                  currentFlat.status
+                )}`}
+              >
                 <CheckCircle className="inline mr-1" size={12} />
                 {currentFlat.status}
               </span>
@@ -265,55 +328,75 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
 
           {/* Additional Details Section */}
           <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
-            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">Additional Information</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">
+              Additional Information
+            </h3>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4 sm:mb-6">
               {/* Change: Adjusted padding from 'p-3 sm:p-4' to 'p-3'. */}
               <div className="text-center p-3 rounded-lg bg-blue-50">
                 <Bed className="text-blue-600 mx-auto mb-1 sm:mb-2" size={20} />
-                <div className="text-xl sm:text-2xl font-bold text-gray-900">{currentFlat.bedrooms}</div>
+                <div className="text-xl sm:text-2xl font-bold text-gray-900">
+                  {currentFlat.bedrooms}
+                </div>
                 <div className="text-xs sm:text-sm text-gray-600">Bedrooms</div>
               </div>
 
               {/* Change: Adjusted padding from 'p-3 sm:p-4' to 'p-3'. */}
               <div className="text-center p-3 rounded-lg bg-indigo-50">
-                <Bath className="text-indigo-600 mx-auto mb-1 sm:mb-2" size={20} />
-                <div className="text-xl sm:text-2xl font-bold text-gray-900">{currentFlat.bathrooms}</div>
-                <div className="text-xs sm:text-sm text-gray-600">Bathrooms</div>
+                <Bath
+                  className="text-indigo-600 mx-auto mb-1 sm:mb-2"
+                  size={20}
+                />
+                <div className="text-xl sm:text-2xl font-bold text-gray-900">
+                  {currentFlat.bathrooms}
+                </div>
+                <div className="text-xs sm:text-sm text-gray-600">
+                  Bathrooms
+                </div>
               </div>
 
               {/* Change: Adjusted padding from 'p-3 sm:p-4' to 'p-3'. */}
               <div className="text-center p-3 rounded-lg bg-purple-50">
-                <Compass className="text-purple-600 mx-auto mb-1 sm:mb-2" size={20} />
-                <div className="text-lg sm:text-xl font-bold text-gray-900">{currentFlat.facing}</div>
+                <Compass
+                  className="text-purple-600 mx-auto mb-1 sm:mb-2"
+                  size={20}
+                />
+                <div className="text-lg sm:text-xl font-bold text-gray-900">
+                  {currentFlat.facing}
+                </div>
                 <div className="text-xs sm:text-sm text-gray-600">Facing</div>
               </div>
             </div>
 
             <div>
-              <h4 className="font-semibold text-gray-900 mb-2 sm:mb-3 text-base sm:text-lg">Amenities</h4>
-               <div className="grid grid-cols-3 gap-4 sm:gap-6">
-  {currentFlat.amenities?.map((amenity: string, index: number) => {
-    const imageName = `${amenity}.png`;
-    const imagePath = `/images/flat_amenities/${imageName}`;
+              <h4 className="font-semibold text-gray-900 mb-2 sm:mb-3 text-base sm:text-lg">
+                Amenities
+              </h4>
+              <div className="grid grid-cols-3 gap-4 sm:gap-6">
+                {currentFlat.amenities?.map(
+                  (amenity: string, index: number) => {
+                    const imageName = `${amenity}.png`;
+                    const imagePath = `/images/flat_amenities/${imageName}`;
 
-    return (
-      <div
-        key={index}
-        className="flex flex-col items-center text-center"
-      >
-        <img
-          src={imagePath}
-          alt={amenity}
-          className="w-12 h-12 sm:w-16 sm:h-16 object-contain rounded-md shadow"
-        />
-        <span className="mt-2 text-xs sm:text-sm text-gray-700">
-          {amenity}
-        </span>
-      </div>
-    );
-  })}
-</div>
+                    return (
+                      <div
+                        key={index}
+                        className="flex flex-col items-center text-center"
+                      >
+                        <img
+                          src={imagePath}
+                          alt={amenity}
+                          className="w-12 h-12 sm:w-16 sm:h-16 object-contain rounded-md shadow"
+                        />
+                        <span className="mt-2 text-xs sm:text-sm text-gray-700">
+                          {amenity}
+                        </span>
+                      </div>
+                    );
+                  }
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -322,69 +405,84 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
         <div className="space-y-6">
           <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900">Media Gallery</h3>
-                <div className="flex items-center space-x-2 text-gray-600 text-sm">
-                    <ImageIcon size={18} />
-                    <span>{media.length} items</span>
-                </div>
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900">
+                Media Gallery
+              </h3>
+              <div className="flex items-center space-x-2 text-gray-600 text-sm">
+                <ImageIcon size={18} />
+                <span>{media.length} items</span>
+              </div>
             </div>
 
             <div className="relative mb-4 rounded-xl overflow-hidden shadow-md aspect-video max-h-72">
-                {media.length > 0 ? (
-                    media[currentMediaIndex].includes('.mp4') || media[currentMediaIndex].includes('video') ? (
-                        <video
-                            src={media[currentMediaIndex]}
-                            controls
-                            className="w-full h-full object-cover"
-                        />
-                    ) : (
-                        <img
-                            src={media[currentMediaIndex]}
-                            alt={`Media ${currentMediaIndex + 1}`}
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                                (e.target as HTMLImageElement).onerror = null;
-                                (e.target as HTMLImageElement).src = `https://placehold.co/600x400/E0E7FF/4F46E5?text=Image+${currentMediaIndex + 1}`;
-                            }}
-                        />
-                    )
+              {media.length > 0 ? (
+                media[currentMediaIndex].includes(".mp4") ||
+                media[currentMediaIndex].includes("video") ? (
+                  <video
+                    src={media[currentMediaIndex]}
+                    controls
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-500">
-                        <p className="text-sm">No media available</p>
-                    </div>
-                )}
+                  <img
+                    src={media[currentMediaIndex]}
+                    alt={`Media ${currentMediaIndex + 1}`}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).onerror = null;
+                      (
+                        e.target as HTMLImageElement
+                      ).src = `https://placehold.co/600x400/E0E7FF/4F46E5?text=Image+${
+                        currentMediaIndex + 1
+                      }`;
+                    }}
+                  />
+                )
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-500">
+                  <p className="text-sm">No media available</p>
+                </div>
+              )}
             </div>
 
             <div className="flex overflow-x-auto gap-2 p-1 hide-scrollbar">
-                {media.map((item, index) => (
-                    <div
-                        key={index}
-                        onClick={() => setCurrentMediaIndex(index)}
-                        className={`relative flex-shrink-0 w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden cursor-pointer
-                                    border-2 transition-all ${currentMediaIndex === index ? 'border-indigo-600' : 'border-transparent'}`}
-                    >
-                        {item.includes('.mp4') || item.includes('video') ? (
-                            <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                                <Play className="text-white" size={14} />
-                            </div>
-                        ) : (
-                            <img
-                                src={item}
-                                alt={`Thumbnail ${index + 1}`}
-                                className="w-full h-full object-cover"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).onerror = null;
-                                  (e.target as HTMLImageElement).src = `https://placehold.co/100x70/E0E7FF/4F46E5?text=Thumb`;
-                                }}
-                            />
-                        )}
+              {media.map((item, index) => (
+                <div
+                  key={index}
+                  onClick={() => setCurrentMediaIndex(index)}
+                  className={`relative flex-shrink-0 w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden cursor-pointer
+                                    border-2 transition-all ${
+                                      currentMediaIndex === index
+                                        ? "border-indigo-600"
+                                        : "border-transparent"
+                                    }`}
+                >
+                  {item.includes(".mp4") || item.includes("video") ? (
+                    <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                      <Play className="text-white" size={14} />
                     </div>
-                ))}
+                  ) : (
+                    <img
+                      src={item}
+                      alt={`Thumbnail ${index + 1}`}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).onerror = null;
+                        (
+                          e.target as HTMLImageElement
+                        ).src = `https://placehold.co/100x70/E0E7FF/4F46E5?text=Thumb`;
+                      }}
+                    />
+                  )}
+                </div>
+              ))}
             </div>
           </div>
 
           <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
-            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">3D Model</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">
+              3D Model
+            </h3>
             <div className="h-48 sm:h-64 rounded-lg mb-4">
               {modelPath ? (
                 <Suspense fallback={loadingFallback}>
@@ -397,18 +495,31 @@ const FlatInfo: React.FC<FlatInfoProps> = ({ siteData, flatNumber }) => {
           </div>
 
           <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
-            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">AR Experience</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">
+              AR Experience
+            </h3>
             <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 sm:p-6 rounded-lg border border-green-200">
               <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
                 <div className="flex items-center space-x-3">
                   <QrCode className="text-green-600" size={28} />
                   <div>
-                    <p className="font-medium text-gray-900 text-base sm:text-lg">View in AR</p>
-                    <p className="text-sm text-gray-600">Experience the flat virtually</p>
+                    <p className="font-medium text-gray-900 text-base sm:text-lg">
+                      View in AR
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      Experience the flat virtually
+                    </p>
                   </div>
                 </div>
-                <button className="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 sm:px-6 sm:py-3
-                                   rounded-lg font-medium transition-colors w-full sm:w-auto">
+                <button
+                  className="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg font-medium transition-colors w-full sm:w-auto"
+                  onClick={() =>
+                    window.open(
+                      "https://grand-blancmange-c32882.netlify.app/",
+                      "_blank"
+                    )
+                  }
+                >
                   Open AR
                 </button>
               </div>

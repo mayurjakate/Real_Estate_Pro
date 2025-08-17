@@ -111,7 +111,7 @@ interface SidebarProps {
 
 const navigationItems = [
   { id: 'building', label: 'Building Info', icon: Building },
-  { id: 'flat', label: 'Flat Info', icon: Home },
+  { id: 'flat', label: 'Unit Info', icon: Home },
   { id: 'units', label: 'Units', icon: Grid3x3 },
   { id: 'gallery', label: 'Gallery', icon: Images },
   { id: 'amenities', label: 'Amenities', icon: Sparkles },

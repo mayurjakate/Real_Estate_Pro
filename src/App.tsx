@@ -9,7 +9,6 @@ import Enquiry from './components/sections/Enquiry';
 import ProjectMembers from './components/sections/ProjectMembers';
 import sitesData from "./components/data/sites.json";
 import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 import ContactButtons from './components/ContactButtons.tsx';
 
 function App() {
@@ -17,15 +16,13 @@ function App() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [activeSection, setActiveSection] = useState('building');
   const [selectedSite, setSelectedSite] = useState('Vista Imperia');
-  const [selectedFlatNumber, setSelectedFlatNumber] = useState<string | null>(null); // New state to store the selected flat number
-  
+  const [selectedFlatNumber, setSelectedFlatNumber] = useState<string | null>(null);
+
   const sites = Object.keys(sitesData);
   const currentSiteData = sitesData[selectedSite as keyof typeof sitesData];
 
-  
-  // Dummy contact numbers for the purpose of this example
   const CONTACT_PHONE = '+918779780901';
-  const CONTACT_WHATSAPP = '918779780901'; // WhatsApp number without '+'
+  const CONTACT_WHATSAPP = '918779780901';
 
   // Handle responsive sidebar behavior on resize
   useEffect(() => {
@@ -38,9 +35,14 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // 🔥 Reset scroll to top whenever active section changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [activeSection]);
+
   const handleFlatSelect = (flatNumber: string) => {
     setActiveSection('flat');
-    setSelectedFlatNumber(flatNumber); // Set the selected flat number
+    setSelectedFlatNumber(flatNumber);
     if (window.innerWidth < 1024) {
       setIsMobileOpen(false);
     }
@@ -58,7 +60,6 @@ function App() {
       case 'building':
         return <BuildingInfo siteData={currentSiteData} />;
       case 'flat':
-        // Pass the selectedFlatNumber to the FlatInfo component
         return <FlatInfo siteData={currentSiteData} flatNumber={selectedFlatNumber} />;
       case 'units':
         return <Units siteData={currentSiteData} onFlatSelect={handleFlatSelect} />;
@@ -77,40 +78,34 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      {/* Top Bar - Always visible */}
+      {/* Top Bar */}
       <header className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
-  <div className="flex items-center justify-between px-6 py-4">
-    {/* Left side - Title */}
-    <div className="flex items-center space-x-3">
-  {/* Logo */}
-  <img
-    src="/images/builder_logo.png"
-    alt="DR City Logo"
-    className="w-10 h-10 object-contain"
-  />
+        <div className="flex items-center justify-between px-6 py-4">
+          {/* Left side - Logo + Title */}
+          <div className="flex items-center space-x-3">
+            <img
+              src="/images/builder_logo.png"
+              alt="DR City Logo"
+              className="w-10 h-10 object-contain"
+            />
+            <div className="text-left">
+              <h1 className="text-lg font-semibold text-white">DR City</h1>
+            </div>
+          </div>
 
-  {/* Title */}
-  <div className="text-left">
-    <h1 className="text-lg font-semibold text-white">DR City</h1>
-  </div>
-</div>
-
-    {/* Right side - Icons + Burger Menu */}
-    <div className="flex items-center space-x-3">
-      {/* Contact icons */}
-      <ContactButtons phoneNumber={CONTACT_PHONE} whatsappNumber={CONTACT_WHATSAPP} />
-
-      {/* Burger icon for mobile */}
-      <button
-        onClick={() => setIsMobileOpen(!isMobileOpen)}
-        className="p-2 text-gray-700 lg:hidden rounded-md hover:bg-gray-100 transition-colors"
-        aria-label="Toggle navigation menu"
-      >
-        {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-    </div>
-  </div>
-</header>
+          {/* Right side - Contact + Burger */}
+          <div className="flex items-center space-x-3">
+            <ContactButtons phoneNumber={CONTACT_PHONE} whatsappNumber={CONTACT_WHATSAPP} />
+            <button
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              className="p-2 text-gray-700 lg:hidden rounded-md hover:bg-gray-100 transition-colors"
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </header>
 
       <div className="flex flex-1">
         {/* Sidebar */}
@@ -126,11 +121,13 @@ function App() {
           onSiteChange={setSelectedSite}
         />
 
-        {/* Main Content - Adjust margin based on desktop sidebar state */}
-        <main className={`
-          flex-1 transition-all duration-300 ease-in-out
-          ${isCollapsed ? 'lg:mr-16' : 'lg:mr-64'}
-        `}>
+        {/* Main Content */}
+        <main
+          className={`
+            flex-1 transition-all duration-300 ease-in-out
+            ${isCollapsed ? 'lg:mr-16' : 'lg:mr-64'}
+          `}
+        >
           <div className="p-6">
             <div className="max-w-7xl mx-auto">
               {renderActiveSection()}

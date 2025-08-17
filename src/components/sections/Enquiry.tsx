@@ -77,8 +77,8 @@ const Enquiry: React.FC<EnquiryProps> = ({ siteData }) => {
                 <Phone className="flex-shrink-0 mt-1" size={20} />
                 <div>
                   <h3 className="font-semibold">Phone</h3>
-                  <p className="text-indigo-100">+91 98765 43210</p>
-                  <p className="text-indigo-100">+91 87654 32109</p>
+                  <p className="text-indigo-100">+91 8400025558</p>
+                   
                 </div>
               </div>
               
@@ -86,8 +86,8 @@ const Enquiry: React.FC<EnquiryProps> = ({ siteData }) => {
                 <Mail className="flex-shrink-0 mt-1" size={20} />
                 <div>
                   <h3 className="font-semibold">Email</h3>
-                  <p className="text-indigo-100">info@realestatepro.com</p>
-                  <p className="text-indigo-100">sales@realstatepro.com</p>
+                  <p className="text-indigo-100">info@drcity.in</p>
+                   
                 </div>
               </div>
               
@@ -96,8 +96,9 @@ const Enquiry: React.FC<EnquiryProps> = ({ siteData }) => {
                 <div>
                   <h3 className="font-semibold">Address</h3>
                   <p className="text-indigo-100">
-                    123 Real Estate Plaza,<br />
-                    Business District, Pune - 411001
+                   Deeprajam Infraspace LLP,<br />
+                    Aashiyaad Chowk, Shegaon Rahatagaon Road,<br />
+                    Amravati - 444603
                   </p>
                 </div>
               </div>
